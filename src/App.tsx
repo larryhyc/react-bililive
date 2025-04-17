@@ -8,6 +8,7 @@ function App() {
     <WebSocketProvider>
       <div className="app">
         <ConnectionStatus />
+        <RoomForm />
         <DanmuList />
       </div>
     </WebSocketProvider>

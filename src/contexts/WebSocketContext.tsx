@@ -1,10 +1,6 @@
 import { createContext, ReactNode, useState, useEffect } from 'react';
+import { DanmuMessage } from '../interface/Danmu';
 
-interface DanmuMessage {
-  uname: string;
-  content: string;
-  emoji?: string;
-}
 
 export const WebSocketContext = createContext<{
   isConnected: boolean;
@@ -15,9 +11,6 @@ export const WebSocketContext = createContext<{
 });
 
 export function WebSocketProvider({ children }: { children: ReactNode }) {
-  // 将原有App中的WebSocket逻辑迁移到这里
-  // ...实现代码...
-
   const [isConnected, setIsConnected] = useState(false);
   const [messages, setMessages] = useState<DanmuMessage[]>([]);
   const [retryCount, setRetryCount] = useState(0);
@@ -43,7 +36,7 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
           // 限制消息数量
           return newMessages.slice(-maxMessages);
         });
-        console.log('message:', message);
+        // console.log('message:', message);
       } catch (error) {
         console.error('解析ws消息失败:', error);
       }

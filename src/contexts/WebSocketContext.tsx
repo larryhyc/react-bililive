@@ -31,11 +31,13 @@ export function WebSocketProvider({ children }: { children: ReactNode }) {
     ws.onmessage = (event) => {
       try {
         const message: DanmuMessage = JSON.parse(event.data);
+        console.log(message);
         setMessages((prev) => {
           const newMessages = [...prev, message];
           // 限制消息数量
           return newMessages.slice(-maxMessages);
         });
+        
         // console.log('message:', message);
       } catch (error) {
         console.error('解析ws消息失败:', error);
